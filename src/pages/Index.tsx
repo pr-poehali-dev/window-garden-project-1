@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Slider } from '@/components/ui/slider';
 import Icon from '@/components/ui/icon';
 
-export default function Index() {
+const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [windowType, setWindowType] = useState('');
   const [glassType, setGlassType] = useState('');
@@ -478,4 +478,6 @@ export default function Index() {
       </footer>
     </div>
   );
-}
+};
+
+export default Index;
