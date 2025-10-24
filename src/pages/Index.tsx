@@ -10,67 +10,85 @@ import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
-  const [windowType, setWindowType] = useState('');
+  const [profile, setProfile] = useState('');
   const [glassType, setGlassType] = useState('');
-  const [width, setWidth] = useState([100]);
-  const [height, setHeight] = useState([120]);
+  const [width, setWidth] = useState([140]);
+  const [height, setHeight] = useState([140]);
 
   const calculatePrice = () => {
-    const basePrice = 5000;
+    const basePrice = 3500;
     const sizeMultiplier = (width[0] * height[0]) / 10000;
-    const typeMultiplier = windowType === 'premium' ? 1.5 : windowType === 'standard' ? 1.2 : 1;
-    const glassMultiplier = glassType === 'triple' ? 1.4 : glassType === 'double' ? 1.2 : 1;
+    const profileMultiplier = profile === 'rehau' ? 1.3 : profile === 'kbe' ? 1.2 : 1;
+    const glassMultiplier = glassType === 'triple' ? 1.3 : glassType === 'double' ? 1.15 : 1;
     
-    return Math.round(basePrice * sizeMultiplier * typeMultiplier * glassMultiplier);
+    return Math.round(basePrice * sizeMultiplier * profileMultiplier * glassMultiplier);
   };
 
-  const windows = [
+  const profiles = [
     {
       id: 1,
-      name: 'Классическое окно',
-      type: 'Одностворчатое',
-      price: 'от 12 500 ₽',
-      image: 'https://cdn.poehali.dev/projects/490bdef7-13a0-4c70-b8b7-2ee2ba245af9/files/245c2b69-a360-492d-88c6-a81b8a044bc2.jpg',
-      features: ['Двухкамерный стеклопакет', 'Фурнитура Roto', 'Гарантия 10 лет']
+      name: 'REHAU',
+      description: 'Немецкое качество',
+      price: 'от 9 500 ₽',
+      image: 'https://cdn.poehali.dev/projects/490bdef7-13a0-4c70-b8b7-2ee2ba245af9/files/15370200-dd9c-4f16-9aab-893b1b7eaa80.jpg',
+      features: ['70 мм профиль', '5 камер', 'Энергосбережение класса А']
     },
     {
       id: 2,
-      name: 'Панорамное окно',
-      type: 'Двухстворчатое',
-      price: 'от 28 000 ₽',
-      image: 'https://cdn.poehali.dev/projects/490bdef7-13a0-4c70-b8b7-2ee2ba245af9/files/245c2b69-a360-492d-88c6-a81b8a044bc2.jpg',
-      features: ['Трёхкамерный стеклопакет', 'Энергосберегающее покрытие', 'Микропроветривание']
+      name: 'KBE',
+      description: 'Надёжность и тепло',
+      price: 'от 8 900 ₽',
+      image: 'https://cdn.poehali.dev/projects/490bdef7-13a0-4c70-b8b7-2ee2ba245af9/files/15370200-dd9c-4f16-9aab-893b1b7eaa80.jpg',
+      features: ['70 мм профиль', '5 камер', 'Шумоизоляция 42 дБ']
     },
     {
       id: 3,
-      name: 'Балконный блок',
-      type: 'С дверью',
-      price: 'от 35 000 ₽',
-      image: 'https://cdn.poehali.dev/projects/490bdef7-13a0-4c70-b8b7-2ee2ba245af9/files/245c2b69-a360-492d-88c6-a81b8a044bc2.jpg',
-      features: ['Тёплый профиль', 'Противовзломная фурнитура', 'Шумоизоляция 42 дБ']
+      name: 'VEKA',
+      description: 'Проверенная классика',
+      price: 'от 8 200 ₽',
+      image: 'https://cdn.poehali.dev/projects/490bdef7-13a0-4c70-b8b7-2ee2ba245af9/files/15370200-dd9c-4f16-9aab-893b1b7eaa80.jpg',
+      features: ['58 мм профиль', '3 камеры', 'Оптимальная цена']
     }
   ];
 
   const services = [
     {
-      title: 'Замер',
-      description: 'Бесплатный выезд специалиста для точных замеров',
+      title: 'Бесплатный замер',
+      description: 'Выезд замерщика в удобное время',
       icon: 'Ruler'
     },
     {
-      title: 'Монтаж',
-      description: 'Профессиональная установка с гарантией качества',
-      icon: 'Hammer'
+      title: 'Монтаж за 1 день',
+      description: 'Быстрая установка без грязи',
+      icon: 'Clock'
     },
     {
-      title: 'Отделка откосов',
-      description: 'Чистовая отделка внутренних и наружных откосов',
-      icon: 'PaintBucket'
+      title: 'Гарантия 5 лет',
+      description: 'На окна и монтажные работы',
+      icon: 'Shield'
     },
     {
-      title: 'Демонтаж',
-      description: 'Аккуратный демонтаж старых конструкций',
-      icon: 'Trash2'
+      title: 'Рассрочка 0%',
+      description: 'До 12 месяцев без переплат',
+      icon: 'CreditCard'
+    }
+  ];
+
+  const reviews = [
+    {
+      name: 'Елена Соколова',
+      text: 'Отличная работа! Поставили окна быстро, чисто, качественно. Замерщик приехал на следующий день. Рекомендую!',
+      rating: 5
+    },
+    {
+      name: 'Дмитрий Иванов',
+      text: 'Заказывали окна Rehau для всей квартиры. Очень довольны — тепло, тихо, красиво. Спасибо команде!',
+      rating: 5
+    },
+    {
+      name: 'Ольга Петрова',
+      text: 'Понравились цены и сервис. Сделали всё под ключ, с отделкой откосов. Никаких проблем.',
+      rating: 5
     }
   ];
 
@@ -92,7 +110,7 @@ const Index = () => {
           </div>
           
           <nav className="hidden md:flex items-center space-x-6">
-            {['home', 'catalog', 'calculator', 'services', 'about', 'contacts'].map((section) => (
+            {['home', 'catalog', 'calculator', 'reviews', 'contacts'].map((section) => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
@@ -101,10 +119,9 @@ const Index = () => {
                 }`}
               >
                 {section === 'home' && 'Главная'}
-                {section === 'catalog' && 'Каталог'}
+                {section === 'catalog' && 'Профили'}
                 {section === 'calculator' && 'Калькулятор'}
-                {section === 'services' && 'Услуги'}
-                {section === 'about' && 'О компании'}
+                {section === 'reviews' && 'Отзывы'}
                 {section === 'contacts' && 'Контакты'}
               </button>
             ))}
@@ -117,87 +134,90 @@ const Index = () => {
         </div>
       </header>
 
-      <section id="home" className="pt-24 pb-16 px-4">
+      <section id="home" className="pt-24 pb-8 px-4">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 animate-fade-in">
-              <Badge className="text-sm">Премиальные окна для вашего дома</Badge>
-              <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-                Окна, которые меняют пространство
-              </h1>
-              <p className="text-xl text-muted-foreground">
-                Создаём комфорт и уют в каждом доме. Немецкое качество, российские цены. Гарантия 10 лет.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button size="lg" onClick={() => scrollToSection('calculator')}>
-                  Рассчитать стоимость
-                  <Icon name="Calculator" size={20} className="ml-2" />
-                </Button>
-                <Button size="lg" variant="outline" onClick={() => scrollToSection('catalog')}>
-                  Смотреть каталог
-                </Button>
-              </div>
-              <div className="grid grid-cols-3 gap-6 pt-6">
-                <div>
-                  <div className="text-3xl font-bold text-primary">15+</div>
-                  <div className="text-sm text-muted-foreground">лет на рынке</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-primary">5000+</div>
-                  <div className="text-sm text-muted-foreground">довольных клиентов</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-primary">10 лет</div>
-                  <div className="text-sm text-muted-foreground">гарантия</div>
+          <div className="bg-gradient-to-r from-primary to-orange-600 rounded-2xl p-8 md:p-12 text-white mb-12">
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              <div className="space-y-4">
+                <Badge className="bg-white text-primary hover:bg-white">Акция месяца!</Badge>
+                <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+                  Окна от 8 200 ₽<br />со скидкой до 40%
+                </h1>
+                <p className="text-lg opacity-90">
+                  Бесплатный замер, монтаж за 1 день, гарантия 5 лет. Успейте заказать по акции!
+                </p>
+                <div className="flex flex-wrap gap-3 pt-2">
+                  <Button size="lg" variant="secondary" onClick={() => scrollToSection('calculator')}>
+                    Рассчитать стоимость
+                    <Icon name="Calculator" size={20} className="ml-2" />
+                  </Button>
+                  <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/20">
+                    <Icon name="Phone" size={20} className="mr-2" />
+                    8 (800) 555-35-35
+                  </Button>
                 </div>
               </div>
+              <div className="relative">
+                <img
+                  src="https://cdn.poehali.dev/projects/490bdef7-13a0-4c70-b8b7-2ee2ba245af9/files/e5299484-8e18-48ca-80c4-1fbe9c9dd37a.jpg"
+                  alt="Установка окон"
+                  className="rounded-xl shadow-2xl"
+                />
+              </div>
             </div>
-            <div className="relative animate-scale-in">
-              <img
-                src="https://cdn.poehali.dev/projects/490bdef7-13a0-4c70-b8b7-2ee2ba245af9/files/c856e5de-7a68-47c7-a326-5f600fe954b5.jpg"
-                alt="Элегантный интерьер с окнами"
-                className="rounded-2xl shadow-2xl"
-              />
-            </div>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {services.map((service, idx) => (
+              <Card key={idx} className="text-center p-6 hover:shadow-lg transition-shadow border-2">
+                <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Icon name={service.icon as any} size={28} className="text-primary" />
+                </div>
+                <h3 className="font-bold mb-1">{service.title}</h3>
+                <p className="text-sm text-muted-foreground">{service.description}</p>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      <section id="catalog" className="py-16 px-4 bg-white">
+      <section id="catalog" className="py-16 px-4 bg-gray-50">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <Badge className="mb-4">Каталог окон</Badge>
-            <h2 className="text-4xl font-bold mb-4">Выберите идеальное окно</h2>
+            <Badge className="mb-4">Профильные системы</Badge>
+            <h2 className="text-4xl font-bold mb-4">Качественные окна ПВХ</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Широкий ассортимент окон для любых потребностей — от классических до панорамных
+              Работаем только с проверенными немецкими профилями — надёжность и долговечность гарантированы
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {windows.map((window) => (
-              <Card key={window.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <img
-                  src={window.image}
-                  alt={window.name}
-                  className="w-full h-64 object-cover"
-                />
-                <CardHeader>
+          <div className="grid md:grid-cols-3 gap-8">
+            {profiles.map((profile) => (
+              <Card key={profile.id} className="overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
+                <div className="bg-white p-6">
+                  <img
+                    src={profile.image}
+                    alt={profile.name}
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                </div>
+                <CardHeader className="pb-3">
                   <div className="flex items-center justify-between mb-2">
-                    <Badge variant="secondary">{window.type}</Badge>
-                    <span className="text-2xl font-bold text-primary">{window.price}</span>
+                    <CardTitle className="text-2xl">{profile.name}</CardTitle>
+                    <Badge className="text-base px-3 py-1">{profile.price}</Badge>
                   </div>
-                  <CardTitle>{window.name}</CardTitle>
+                  <p className="text-muted-foreground">{profile.description}</p>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2">
-                    {window.features.map((feature, idx) => (
+                  <ul className="space-y-2 mb-4">
+                    {profile.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start">
-                        <Icon name="Check" size={16} className="text-primary mr-2 mt-1" />
+                        <Icon name="Check" size={18} className="text-primary mr-2 mt-0.5 flex-shrink-0" />
                         <span className="text-sm">{feature}</span>
                       </li>
                     ))}
                   </ul>
-                  <Button className="w-full mt-4">Заказать замер</Button>
+                  <Button className="w-full" size="lg">Заказать окно</Button>
                 </CardContent>
               </Card>
             ))}
@@ -218,15 +238,15 @@ const Index = () => {
           <Card className="p-6">
             <div className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="window-type">Тип окна</Label>
-                <Select value={windowType} onValueChange={setWindowType}>
-                  <SelectTrigger id="window-type">
-                    <SelectValue placeholder="Выберите тип окна" />
+                <Label htmlFor="profile">Профиль</Label>
+                <Select value={profile} onValueChange={setProfile}>
+                  <SelectTrigger id="profile">
+                    <SelectValue placeholder="Выберите профиль" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="economy">Эконом</SelectItem>
-                    <SelectItem value="standard">Стандарт</SelectItem>
-                    <SelectItem value="premium">Премиум</SelectItem>
+                    <SelectItem value="veka">VEKA (от 8 200 ₽)</SelectItem>
+                    <SelectItem value="kbe">KBE (от 8 900 ₽)</SelectItem>
+                    <SelectItem value="rehau">REHAU (от 9 500 ₽)</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -269,7 +289,7 @@ const Index = () => {
                 />
               </div>
 
-              {windowType && glassType && (
+              {profile && glassType && (
                 <div className="bg-primary/10 rounded-lg p-6 text-center">
                   <div className="text-sm text-muted-foreground mb-2">Ориентировочная стоимость</div>
                   <div className="text-4xl font-bold text-primary mb-4">
@@ -286,65 +306,36 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="services" className="py-16 px-4 bg-white">
+      <section id="reviews" className="py-16 px-4 bg-gray-50">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <Badge className="mb-4">Наши услуги</Badge>
-            <h2 className="text-4xl font-bold mb-4">Полный цикл работ</h2>
+            <Badge className="mb-4">Отзывы клиентов</Badge>
+            <h2 className="text-4xl font-bold mb-4">Нам доверяют тысячи семей</h2>
             <p className="text-lg text-muted-foreground">
-              От замера до установки — всё под ключ
+              Реальные отзывы наших клиентов о качестве окон и сервисе
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, idx) => (
-              <Card key={idx} className="text-center p-6 hover:shadow-lg transition-shadow">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Icon name={service.icon as any} size={32} className="text-primary" />
+          <div className="grid md:grid-cols-3 gap-6">
+            {reviews.map((review, idx) => (
+              <Card key={idx} className="p-6">
+                <div className="flex items-center gap-1 mb-3">
+                  {[...Array(review.rating)].map((_, i) => (
+                    <Icon key={i} name="Star" size={18} className="text-yellow-500 fill-yellow-500" />
+                  ))}
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                <p className="text-sm text-muted-foreground">{service.description}</p>
+                <p className="text-sm text-muted-foreground mb-4">{review.text}</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                    <Icon name="User" size={20} className="text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-sm">{review.name}</p>
+                    <p className="text-xs text-muted-foreground">Клиент компании</p>
+                  </div>
+                </div>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="about" className="py-16 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-12">
-            <Badge className="mb-4">О компании</Badge>
-            <h2 className="text-4xl font-bold mb-4">Первый Оконный Двор</h2>
-          </div>
-
-          <div className="prose prose-lg max-w-none">
-            <p className="text-lg text-muted-foreground mb-6">
-              Мы работаем на рынке оконных конструкций более 15 лет. За это время мы установили окна 
-              в более чем 5000 квартир и домов, заслужив репутацию надёжного партнёра.
-            </p>
-            <p className="text-lg text-muted-foreground mb-6">
-              Наша философия — премиальное качество по справедливой цене. Мы используем только 
-              сертифицированные материалы от ведущих европейских производителей и предоставляем 
-              расширенную гарантию на все виды работ.
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-6 mt-8">
-              <Card className="p-6 text-center">
-                <Icon name="Award" size={40} className="text-primary mx-auto mb-4" />
-                <h3 className="font-semibold mb-2">Сертификаты качества</h3>
-                <p className="text-sm text-muted-foreground">Все материалы сертифицированы</p>
-              </Card>
-              <Card className="p-6 text-center">
-                <Icon name="Users" size={40} className="text-primary mx-auto mb-4" />
-                <h3 className="font-semibold mb-2">Опытная команда</h3>
-                <p className="text-sm text-muted-foreground">Монтажники с опытом 10+ лет</p>
-              </Card>
-              <Card className="p-6 text-center">
-                <Icon name="Shield" size={40} className="text-primary mx-auto mb-4" />
-                <h3 className="font-semibold mb-2">Гарантия 10 лет</h3>
-                <p className="text-sm text-muted-foreground">На все виды работ и материалы</p>
-              </Card>
-            </div>
           </div>
         </div>
       </section>
@@ -390,8 +381,8 @@ const Index = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Телефон</h4>
-                    <p className="text-muted-foreground">+7 (495) 123-45-67</p>
-                    <p className="text-sm text-muted-foreground mt-1">Ежедневно с 9:00 до 21:00</p>
+                    <a href="tel:88005553535" className="text-muted-foreground text-lg font-semibold hover:text-primary">8 (800) 555-35-35</a>
+                    <p className="text-sm text-muted-foreground mt-1">Бесплатный звонок по России</p>
                   </div>
                 </div>
               </Card>
@@ -436,37 +427,42 @@ const Index = () => {
                 </div>
                 <span className="text-lg font-bold">Первый Оконный Двор</span>
               </div>
-              <p className="text-sm text-gray-400">
-                Премиальные окна для вашего комфорта
+              <p className="text-sm text-gray-400 mb-4">
+                Окна ПВХ с установкой под ключ
               </p>
+              <Button className="w-full">
+                <Icon name="Phone" size={16} className="mr-2" />
+                Заказать звонок
+              </Button>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4">Каталог</h4>
+              <h4 className="font-semibold mb-4">Профили</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li>Классические окна</li>
-                <li>Панорамные окна</li>
-                <li>Балконные блоки</li>
-                <li>Входные двери</li>
+                <li>REHAU</li>
+                <li>KBE</li>
+                <li>VEKA</li>
+                <li>Сравнение профилей</li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold mb-4">Услуги</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li>Замер</li>
-                <li>Установка окон</li>
+                <li>Бесплатный замер</li>
+                <li>Монтаж за 1 день</li>
                 <li>Отделка откосов</li>
-                <li>Демонтаж</li>
+                <li>Гарантия 5 лет</li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold mb-4">Контакты</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li>+7 (495) 123-45-67</li>
+                <li className="text-primary font-semibold">8 (800) 555-35-35</li>
                 <li>info@okonniy-dvor.ru</li>
-                <li>г. Москва, ул. Примерная, д. 1</li>
+                <li>г. Москва</li>
+                <li>Пн-Вс: 9:00 - 21:00</li>
               </ul>
             </div>
           </div>
